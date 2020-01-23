@@ -1,5 +1,14 @@
 require("dotenv").config();
-var keys = require("./keys.js");
+
+//DEPENDENCIES
+const keys = require("./keys.js");
+const axios = require("axios");
+const dotenv = require("dotenv");
+const fs = require("fs");
+const inquirer = require("inquirer");
+const moment = require("moment");
+const spotify = require("node-spotify-api");
+
 
 //switch
 switch(command) {
