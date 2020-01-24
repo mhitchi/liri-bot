@@ -59,19 +59,27 @@ inquirer.prompt([
     //use node-spotify-api
 const getMusic = (str) => {
   console.log("getting music");
-  axios
-    .get(`https://api.spotify.com/v1/search$q=${str}`, {
-      headers: {
-        "Authorization": "Basic"
-      }
+  spotify
+    .search({ type: 'artist', query: str })
+    .then( function(response) {
+      console.log(response.artists.items);
     })
-    .then(function(response) {
-      //TODO throwing error
-      console.log(response.data);
-    })
-    .catch(function(error) {
-      console.log(error);
-    }); 
+    .catch( function(err) {
+      console.log(err);
+    });
+  // axios
+  //   .get(`https://api.spotify.com/v1/search&q=${str}`, {
+  //     headers: {
+  //       "Authorization": "Basic"
+  //     }
+  //   })
+  //   .then(function(response) {
+  //     //TODO throwing error
+  //     console.log(response.data);
+  //   })
+  //   .catch(function(error) {
+  //     console.log(error);
+  //   }); 
 }
 
 //concert function
