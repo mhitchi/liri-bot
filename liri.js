@@ -96,7 +96,7 @@ const getConcert = (str) => {
   axios
     .get(`https://rest.bandsintown.com/artists/${str}/events?app_id=codingbootcamp`)
     .then(function(response) {
-      //nodeconsole.log(response.data[0]);
+      //console.log(response.data[0]);
       console.log(`Artist: ${response.data[0].artist.name}`);
       console.log(`Venue: ${response.data[0].venue.name}`);
       console.log(`Lat: ${response.data[0].venue.latitude}`);
@@ -119,7 +119,7 @@ const getMovie = (str) => {
     .get(`http://www.omdbapi.com/?apikey=${apikey}&t=${str}`)
     .then(function(response) {
       //returning stuff!!!
-      console.log(response.data);
+      //console.log(response.data);
       console.log(`Title: ${response.data.Title}`);
       console.log(`Year: ${response.data.Year}`);
       console.log(`IMDB Rating: ${response.data.Ratings[0].Value}`);

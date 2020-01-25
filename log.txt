@@ -2,3 +2,5 @@ Random search for song, I Want it That Way
 Spotify search for If I Had a Dog.
 OMDB search for frankie cosmos.
 OMDB search for knives out.
+Spotify search for Hairpool.
+OMDB search for Ponyo.
