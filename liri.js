@@ -136,7 +136,13 @@ const getMovie = (str) => {
     //call spotify-this-song
 const getRandom = (str) => {
   console.log("getting random");
-  
+  fs.readFile('./random.txt', 'utf8', (err, data) => {
+    if (err) throw err;
+    let dataArr = data.split(',');
+    // searchType = dataArr[0];
+    searchInput = dataArr[1];
+    getMusic(searchInput);
+  });
 }
 
 
