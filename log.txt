@@ -4,3 +4,5 @@ OMDB search for frankie cosmos.
 OMDB search for knives out.
 Spotify search for Hairpool.
 OMDB search for Ponyo.
+OMDB search for new madrid.
+OMDB search for Deep State.

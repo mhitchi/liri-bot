@@ -101,7 +101,8 @@ const getConcert = (str) => {
       console.log(`Venue: ${response.data[0].venue.name}`);
       console.log(`Lat: ${response.data[0].venue.latitude}`);
       console.log(`Lon: ${response.data[0].venue.longitude}`);
-      console.log(`Date: ${response.data[0].datetime}`);
+      let date = moment(response.data[0].datetime).format("MM/DD/YYYY");
+      console.log(`Date: ${date}`);
 
       logData(`OMDB search for ${str}.`);
     })
