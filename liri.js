@@ -78,33 +78,22 @@ const getMusic = (str) => {
     .catch( function(err) {
       console.log(err);
     });
-  // axios
-  //   .get(`https://api.spotify.com/v1/search&q=${str}`, {
-  //     headers: {
-  //       "Authorization": "Basic"
-  //     }
-  //   })
-  //   .then(function(response) {
-  //     //TODO throwing error
-  //     console.log(response.data);
-  //   })
-  //   .catch(function(error) {
-  //     console.log(error);
-  //   }); 
 }
 
 //concert function
   //search Bands in Town Artist Events API for an artist
-    //"https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"
-    //use "codingbootcamp" as app_id
-    //render venue, location, date of event to terminal
+  //render venue, location, date of event to terminal
 const getConcert = (str) => {
   console.log("getting concert");
   axios
     .get(`https://rest.bandsintown.com/artists/${str}/events?app_id=codingbootcamp`)
     .then(function(response) {
-      //TODO returning empty array
-      console.log(response.data);
+      console.log(response.data[0]);
+      console.log(`Venue: ${response.data[0].venue.name}`);
+      console.log(`Lat: ${response.data[0].venue.latitude}`);
+      console.log(`Lon: ${response.data[0].venue.longitude}`);
+      console.log(`Date: ${response.data[0].datetime}`);
+
     })
     .catch(function(error) {
       console.log(error);
