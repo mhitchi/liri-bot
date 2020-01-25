@@ -80,6 +80,8 @@ const getMusic = (str) => {
       console.log(`Artist: ${response.tracks.items[0].artists[0].name}`);
       console.log(`Album: ${response.tracks.items[0].album.name}`);
       console.log(`Preview: ${response.tracks.items[0].preview_url}`);
+
+      logData(`Spotify search for ${str}.`);
     })
     .catch( function(err) {
       console.log(err);
@@ -94,12 +96,14 @@ const getConcert = (str) => {
   axios
     .get(`https://rest.bandsintown.com/artists/${str}/events?app_id=codingbootcamp`)
     .then(function(response) {
-      console.log(response.data[0]);
+      //nodeconsole.log(response.data[0]);
+      console.log(`Artist: ${response.data[0].artist.name}`);
       console.log(`Venue: ${response.data[0].venue.name}`);
       console.log(`Lat: ${response.data[0].venue.latitude}`);
       console.log(`Lon: ${response.data[0].venue.longitude}`);
       console.log(`Date: ${response.data[0].datetime}`);
 
+      logData(`OMDB search for ${str}.`);
     })
     .catch(function(error) {
       console.log(error);
@@ -124,6 +128,8 @@ const getMovie = (str) => {
       console.log(`Languages: ${response.data.Language}`);
       console.log(`Plot Synopsis: ${response.data.Plot}`);
       console.log(`Cast: ${response.data.Actors}`);
+
+      logData(`OMDB search for ${str}.`);
     })
     .catch(function(error) {
       console.log(error);
@@ -137,15 +143,23 @@ const getMovie = (str) => {
 const getRandom = (str) => {
   console.log("getting random");
   fs.readFile('./random.txt', 'utf8', (err, data) => {
-    if (err) throw err;
+    if(err) {
+      console.log(err);
+    }
     let dataArr = data.split(',');
     // searchType = dataArr[0];
     searchInput = dataArr[1];
     getMusic(searchInput);
+    logData(`Random search for ${dataArr[0]}, ${dataArr[1]}.`);
   });
 }
 
-
-
-
 //output data to log.txt by appending
+
+const logData = (str) => {
+  fs.appendFile("log.txt" , str + '\n', (err) => {
+    if(err) {
+      console.log(err);
+    }
+  });
+}
