@@ -21,7 +21,7 @@ inquirer.prompt([
     type: "list",
     message: "What are you looking for?",
     name: "searchType",
-    choices: ["song/artist", "concert", "movie", "other"]
+    choices: ["song", "concert", "movie", "other"]
   },
   {
     //input
@@ -33,11 +33,20 @@ inquirer.prompt([
   console.log(response);
   searchType = response.searchType;
   searchInput = response.searchInput;
+  //TODO NOT WORKING
+  searchInput.replace(/\s/g, "").toLowerCase();
+  console.log(searchInput);
 }).then(() => {
   //switch
   switch(searchType) {
-    case "song/artist":
+    case "song":
+      //if no song provided, default to "The Sign" by Ace of Base
+      if( searchInput !== "" ){
       getMusic(searchInput);
+      } else {
+        searchInput = "The Sign";
+        getMusic(searchInput);
+      };
       break;
     case "concert":
       getConcert(searchInput);
@@ -55,14 +64,16 @@ inquirer.prompt([
 
 //spotify function
     //render artist, song name, preview link, album
-    //if no song provided, default to "The Sign" by Ace of Base
     //use node-spotify-api
 const getMusic = (str) => {
-  console.log("getting music");
+  //console.log("getting music");
   spotify
-    .search({ type: 'artist', query: str })
+    .search({ type: 'track', query: str , limit: 1})
     .then( function(response) {
-      console.log(response.artists.items);
+      console.log(`Song: ${str}`);
+      console.log(`Artist: ${response.tracks.items[0].artists[0].name}`);
+      console.log(`Album: ${response.tracks.items[0].album.name}`);
+      console.log(`Preview: ${response.tracks.items[0].preview_url}`);
     })
     .catch( function(err) {
       console.log(err);
