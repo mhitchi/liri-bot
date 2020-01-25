@@ -52,7 +52,13 @@ inquirer.prompt([
       getConcert(searchInput);
       break;
     case "movie":
-      getMovie(searchInput);
+      //if no movie provided, default to "Mr. Nobody"
+      if( searchInput !== "" ){
+        getMovie(searchInput);
+      } else {
+        searchInput = "Mr Nobody";
+        getMovie(searchInput);
+      }
       break;
     case "other":
       getRandom(searchInput);
@@ -101,10 +107,7 @@ const getConcert = (str) => {
 }
 
 //movie function
-  //use axios
-    //use "trilogy" as api key
-    //render title, year, IMDB rating, Rotten Tomatoes rating, country, language, plot, actors
-    //if no movie provided, default to "Mr. Nobody"
+  //render title, year, IMDB rating, Rotten Tomatoes rating, country, language, plot, actors
 const getMovie = (str) => {
   console.log("getting movie");
   let apikey = "cb792c15";
@@ -113,6 +116,14 @@ const getMovie = (str) => {
     .then(function(response) {
       //returning stuff!!!
       console.log(response.data);
+      console.log(`Title: ${response.data.Title}`);
+      console.log(`Year: ${response.data.Year}`);
+      console.log(`IMDB Rating: ${response.data.Ratings[0].Value}`);
+      console.log(`Rotten Tomatoes Rating: ${response.data.Ratings[1].Value}`);
+      console.log(`Country: ${response.data.Country}`);
+      console.log(`Languages: ${response.data.Language}`);
+      console.log(`Plot Synopsis: ${response.data.Plot}`);
+      console.log(`Cast: ${response.data.Actors}`);
     })
     .catch(function(error) {
       console.log(error);
