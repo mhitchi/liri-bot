@@ -6,3 +6,7 @@ Spotify search for Hairpool.
 OMDB search for Ponyo.
 OMDB search for new madrid.
 OMDB search for Deep State.
+Spotify search for Less Than the Air.
+OMDB search for The Killers.
+OMDB search for The Handmaiden.
+OMDB search for The Lobster.
